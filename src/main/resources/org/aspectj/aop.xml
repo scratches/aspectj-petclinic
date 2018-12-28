@@ -1,0 +1,13 @@
+<!DOCTYPE aspectj PUBLIC "-//AspectJ//DTD//EN" "http://www.eclipse.org/aspectj/dtd/aspectj.dtd">
+<aspectj>
+	<weaver options="-verbose -showWeaveInfo">
+		<include within="org.springframework.samples.petclinic..*" />
+		<include within="com.sun.proxy.*" />
+		<dump within="org.springframework.samples.petclinic.vet.*" />
+	</weaver>
+
+	<aspects>
+		<aspect name="org.springframework.samples.petclinic.aspect.Annotations" />
+	</aspects>
+
+</aspectj>

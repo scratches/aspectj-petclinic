@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationListener=\
+org.springframework.samples.petclinic.config.BeanCountingApplicationListener,\
+org.springframework.samples.petclinic.config.StartupApplicationListener,\
+org.springframework.samples.petclinic.config.ShutdownApplicationListener

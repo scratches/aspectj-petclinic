@@ -29,11 +29,14 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration;
+import org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.ServletWebServerFactoryAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * PetClinic Spring Boot Application.
@@ -44,19 +47,30 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringBootConfiguration
 @ComponentScan
 @ImportAutoConfiguration({ MessageSourceAutoConfiguration.class,
-        PropertyPlaceholderAutoConfiguration.class,
-        ConfigurationPropertiesAutoConfiguration.class, DataSourceAutoConfiguration.class,
-        HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class,
-        CacheAutoConfiguration.class,
-        ServletWebServerFactoryAutoConfiguration.class, WebMvcAutoConfiguration.class,
-        ErrorMvcAutoConfiguration.class, DispatcherServletAutoConfiguration.class,
-        ThymeleafAutoConfiguration.class })
+		PropertyPlaceholderAutoConfiguration.class,
+		ConfigurationPropertiesAutoConfiguration.class, DataSourceAutoConfiguration.class,
+		HibernateJpaAutoConfiguration.class, JpaRepositoriesAutoConfiguration.class,
+		ServletWebServerFactoryAutoConfiguration.class, WebMvcAutoConfiguration.class,
+		ErrorMvcAutoConfiguration.class, DispatcherServletAutoConfiguration.class,
+		ThymeleafAutoConfiguration.class })
 @AutoConfigurationPackage
 @EntityScan
 public class PetClinicApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(PetClinicApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(PetClinicApplication.class, args);
+	}
 
+}
+
+@Profile("tx")
+@Configuration
+@ImportAutoConfiguration(TransactionAutoConfiguration.class)
+class ApplicationTransactionConfiguration {
+}
+
+@Profile("cache")
+@Configuration
+@ImportAutoConfiguration(CacheAutoConfiguration.class)
+class ApplicationCacheConfiguration {
 }

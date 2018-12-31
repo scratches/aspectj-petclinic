@@ -302,6 +302,11 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-failsafe-plugin</artifactId>
+				<configuration>
+					<systemProperties>
+						<publishTo>csv:target/result.csv</publishTo>
+					</systemProperties>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

@@ -15,6 +15,7 @@ LazyInitBeanFactoryPostProcessor.java * Copyright 2016-2017 the original author 
  */
 package org.springframework.samples.petclinic.bench;
 
+import org.junit.jupiter.api.Disabled;
 import org.openjdk.jmh.annotations.AuxCounters;
 import org.openjdk.jmh.annotations.AuxCounters.Type;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -38,17 +39,20 @@ import jmh.mbr.junit5.Microbenchmark;
 @Microbenchmark
 public class PetClinicBenchmarkIT {
 
+	@Disabled
 	@Benchmark
 	public void nocache(MainState state) throws Exception {
 		state.addArgs("-Dspring.profiles.active=tx");
 		state.run();
 	}
 
+	@Disabled
 	@Benchmark
 	public void noaspects(MainState state) throws Exception {
 		state.run();
 	}
 
+	@Disabled
 	@Benchmark
 	public void manual(MainState state) throws Exception {
 		state.addArgs("-Dspring.profiles.active=manual,tx,proxy");
@@ -62,6 +66,7 @@ public class PetClinicBenchmarkIT {
 		state.run();
 	}
 
+	@Disabled
 	@Benchmark
 	public void simple(MainState state) throws Exception {
 		state.addArgs("-Dspring.profiles.active=cache,tx,proxy",
@@ -69,12 +74,14 @@ public class PetClinicBenchmarkIT {
 		state.run();
 	}
 
+	@Disabled
 	@Benchmark
 	public void jcache(MainState state) throws Exception {
 		state.addArgs("-Dspring.profiles.active=cache,tx,proxy,jcache");
 		state.run();
 	}
 
+	@Disabled
 	@Benchmark
 	public void aspectj(MainState state) throws Exception {
 		state.addArgs("-Dspring.profiles.active=cache,tx,aspectj,jcache");

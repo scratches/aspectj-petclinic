@@ -47,7 +47,7 @@ public class CsvResultsWriterFactory implements ResultsWriterFactory {
 
 			@Override
 			public void write(OutputFormat output, Collection<RunResult> results) {
-				StringBuilder report = new StringBuilder();
+				StringBuilder report = new StringBuilder(System.lineSeparator());
 				try {
 					Map<String, Integer> params = new LinkedHashMap<>();
 					int paramPlaces = 0;

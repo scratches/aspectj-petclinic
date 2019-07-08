@@ -19,7 +19,6 @@ import org.springframework.context.annotation.Profile;
  * accessible via JMX.
  */
 @Configuration
-@Import(PseudoCacheConfiguration.class)
 class CacheConfiguration {
 
 	@Configuration
@@ -32,6 +31,12 @@ class CacheConfiguration {
 	@Profile("proxy")
 	@EnableCaching(mode = AdviceMode.PROXY)
 	protected static class SpringCacheConfiguration {
+	}
+
+	@Configuration
+	@Profile("pseudo")
+	@Import(PseudoCacheConfiguration.class)
+	protected static class OtherCacheConfiguration {
 	}
 
 	@Configuration
